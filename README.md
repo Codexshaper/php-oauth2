@@ -14,6 +14,91 @@ OAuth2 authentication for PHP
 composer require codexshaper/php-oauth2
 ```
 
+## Setup Database
+
+```
+use Illuminate\Support\Facades\Facade;
+use Illuminate\Container\Container;
+use CodexShaper\Database\Database;
+
+Facade::setFacadeApplication(new Container);
+
+$db = new Database([
+	"driver" 		=> "mysql",
+	"host" 			=> 'localhost',
+	"database" 		=> 'php-oauth2',
+	"username" 		=> 'root',
+	"password" 		=> '',
+	"prefix"   		=> '',
+	"charset"   	=> 'utf8mb4',
+	"collation"   	=> 'utf8mb4_unicode_ci',
+]);
+
+$db->run();
+```
+
+More details about database follow this link https://github.com/Codexshaper/php-database
+
+#### Migrate tables
+
+```
+use CodexShaper\OAuth2\Server\Manager;
+
+Manager::migrate();
+```
+
+#### Rollback tables
+
+```
+use CodexShaper\OAuth2\Server\Manager;
+
+Manager::rollback();
+```
+
+#### Refresh tables
+
+```
+use CodexShaper\OAuth2\Server\Manager;
+
+Manager::refresh();
+```
+
+#### Get Access Token
+
+```
+use CodexShaper\OAuth2\Server\Http\Controllers\AccessTokenController;
+use League\OAuth2\Server\Exception\OAuthServerException;
+
+try {
+	
+	$controller = new AccessTokenController;
+	$response = $controller->issueAccessToken();
+    
+} catch (OAuthServerException $exception) {
+
+    return $exception->generateHttpResponse($response);
+    
+}
+```
+
+#### Get Refresh Access Token
+
+```
+use CodexShaper\OAuth2\Server\Http\Controllers\RefreshTokenController;
+use League\OAuth2\Server\Exception\OAuthServerException;
+
+try {
+	
+	$controller = new RefreshTokenController;
+	$response = $controller->issueAccessToken();
+    
+} catch (OAuthServerException $exception) {
+
+    return $exception->generateHttpResponse($response);
+    
+}
+```
+
 ### Client Credentials Grant
 
 #### The client sends a POST request with following body parameters to the authorization server:
@@ -47,5 +132,3 @@ composer require codexshaper/php-oauth2
     `expires_in` with an integer representing the TTL of the access token
     `access_token` a JWT signed with the authorization server’s private key
     `refresh_token` an encrypted payload that can be used to refresh the access token when it expires.
-
-
