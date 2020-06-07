@@ -1,2 +1,2 @@
 # php-oauth2
-PHP OAuth2 Authentication
+OAuth2 authentication for PHP
