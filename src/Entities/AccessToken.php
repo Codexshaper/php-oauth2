@@ -10,7 +10,9 @@ use League\OAuth2\Server\Entities\Traits\TokenEntityTrait;
 
 class AccessToken implements AccessTokenEntityInterface
 {
-    use AccessTokenTrait, EntityTrait, TokenEntityTrait;
+    use AccessTokenTrait;
+    use EntityTrait;
+    use TokenEntityTrait;
 
     /**
      * Create a new token instance.

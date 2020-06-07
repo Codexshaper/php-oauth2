@@ -106,6 +106,6 @@ class Client extends Model
      */
     public function isConfidential()
     {
-        return ! empty($this->secret);
+        return !empty($this->secret);
     }
 }

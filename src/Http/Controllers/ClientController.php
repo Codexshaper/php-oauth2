@@ -2,20 +2,16 @@
 
 namespace CodexShaper\OAuth2\Server\Http\Controllers;
 
-use CodexShaper\OAuth2\Server\Manager;
 use CodexShaper\OAuth2\Server\Model;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
 use Illuminate\Support\Str;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
 
 class ClientController
 {
     /**
      * Get all clients.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      *
      * @return json
      */
@@ -33,7 +29,7 @@ class ClientController
     /**
      * Create a client.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      *
      * @return json
      */
@@ -62,7 +58,7 @@ class ClientController
     /**
      * Modify a client.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      *
      * @return json
      */
@@ -91,7 +87,7 @@ class ClientController
     /**
      * Destroy a client.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      *
      * @return json
      */

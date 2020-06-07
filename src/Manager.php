@@ -332,14 +332,14 @@ class Manager
      */
     public static function migrate($dir = null)
     {
-        if(is_null($dir)) {
-            $dir = __DIR__ . '/../database/migrations';
+        if (is_null($dir)) {
+            $dir = __DIR__.'/../database/migrations';
         }
 
-        foreach (glob($dir . '/*.php') as $file) {
+        foreach (glob($dir.'/*.php') as $file) {
             require_once $file;
             $table = pathinfo($file)['filename'];
-            (new $table)->up();
+            (new $table())->up();
         }
     }
 
@@ -352,17 +352,17 @@ class Manager
      */
     public static function rollback($dir = null)
     {
-        if(is_null($dir)) {
-            $dir = __DIR__ . '/../database/migrations';
+        if (is_null($dir)) {
+            $dir = __DIR__.'/../database/migrations';
         }
 
-        foreach (glob($dir . '/*.php') as $file) {
+        foreach (glob($dir.'/*.php') as $file) {
             require_once $file;
             $table = pathinfo($file)['filename'];
-            (new $table)->down();
+            (new $table())->down();
         }
     }
-    
+
     /**
      * Drop and migrate fresh tables.
      *
@@ -372,12 +372,11 @@ class Manager
      */
     public static function refresh($dir = null)
     {
-        if(is_null($dir)) {
-            $dir = __DIR__ . '/../database/migrations';
+        if (is_null($dir)) {
+            $dir = __DIR__.'/../database/migrations';
         }
 
         static::rollback($dir);
         static::migrate($dir);
     }
-
 }
