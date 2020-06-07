@@ -92,11 +92,11 @@ class Client extends Model
     /**
      * Enable or disable skip authorization.
      *
-     * @return bool
+     * @return void
      */
     public static function setSkipsAuthorization($skipsAuthorization = false)
     {
-        return static::$skipsAuthorization = (bool) $skipsAuthorization;
+        static::$skipsAuthorization = (bool) $skipsAuthorization;
     }
 
     /**
