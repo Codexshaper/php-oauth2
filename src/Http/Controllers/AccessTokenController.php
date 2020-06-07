@@ -5,10 +5,6 @@ namespace CodexShaper\OAuth2\Server\Http\Controllers;
 use CodexShaper\OAuth2\Server\Http\Requests\ServerRequest;
 use CodexShaper\OAuth2\Server\Http\Responses\ServerResponse;
 use CodexShaper\OAuth2\Server\Manager;
-use CodexShaper\OAuth2\Server\Model;
-use Illuminate\Support\Str;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
 
 class AccessTokenController
 {
@@ -47,7 +43,7 @@ class AccessTokenController
      */
     public function __construct()
     {
-        $this->manager = new Manager;
+        $this->manager = new Manager();
         $this->server = $this->manager->makeAuthorizationServer();
         $this->request = ServerRequest::getPsrServerRequest();
         $this->response = ServerResponse::getPsrServerResponse();
@@ -64,12 +60,10 @@ class AccessTokenController
 
             // Try to respond to the request
             return $this->server->respondToAccessTokenRequest($this->request, $this->response)->getBody();
-            
         } catch (OAuthServerException $exception) {
-        
+
             // All instances of OAuthServerException can be formatted into a HTTP response
             return $exception->generateHttpResponse($this->response);
-            
         }
     }
 }

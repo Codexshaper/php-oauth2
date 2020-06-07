@@ -48,7 +48,7 @@ class AuthorizationController
      */
     public function __construct()
     {
-        $this->manager = new Manager;
+        $this->manager = new Manager();
         $this->server = $this->manager->makeAuthorizationServer();
         $this->request = ServerRequest::getPsrServerRequest();
         $this->response = ServerResponse::getPsrServerResponse();
@@ -57,7 +57,7 @@ class AuthorizationController
     /**
      * Make authorization.
      *
-     * @param  \CodexShaper\OAuth2\Server\Models\User $user
+     * @param \CodexShaper\OAuth2\Server\Models\User $user
      *
      * @return \League\OAuth2\Server\ResponseTypes\ResponseTypeInterface|void
      */
@@ -79,7 +79,6 @@ class AuthorizationController
             }
 
             return  $authRequest;
-            
         } catch (OAuthServerException $exception) {
 
             // All instances of OAuthServerException can be formatted into a HTTP response
@@ -90,8 +89,8 @@ class AuthorizationController
     /**
      * Approve the authorization.
      *
-     * @param  \League\OAuth2\Server\RequestTypes\AuthorizationRequest $authRequest
-     * @param  \CodexShaper\OAuth2\Server\Models\User $user
+     * @param \League\OAuth2\Server\RequestTypes\AuthorizationRequest $authRequest
+     * @param \CodexShaper\OAuth2\Server\Models\User                  $user
      *
      * @return \League\OAuth2\Server\ResponseTypes\ResponseTypeInterface
      */
@@ -115,13 +114,12 @@ class AuthorizationController
      */
     public function deny()
     {
-
     }
 
     /**
      * Filter all scopes.
      *
-     * @param  \League\OAuth2\Server\RequestTypes\AuthorizationRequest $authRequest
+     * @param \League\OAuth2\Server\RequestTypes\AuthorizationRequest $authRequest
      *
      * @return array
      */

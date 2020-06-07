@@ -192,7 +192,6 @@ class Model
     public static function verifyUserForGrant($username, $password, $grantType, $clientEntity)
     {
         if ($grantType == 'password') {
-
             $model = static::instance('userModel');
 
             $user = $model->where($model->getUserIndentifier(), $username)->first();
